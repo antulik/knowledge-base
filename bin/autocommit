@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+# Auto commits, pulls and pushes the changes
+
+require 'open3'
+
+DEBUG_MODE = true
+
+def debug(value)
+  puts value if DEBUG_MODE
+end
+
+def cmd(*args)
+  result, stdout, stderr, status = full_cmd(*args)
+  result
+end
+
+def cmd_output(*args)
+  result, stdout, stderr, status = full_cmd(*args)
+  stdout
+end
+
+def online?
+  return @online if defined? @online
+
+  ping_info = cmd_output 'ping -c1 -W5 -n 8.8.8.8'
+  @online = ping_info.include? '1 packets received'
+end
+
+def full_cmd(*args)
+  debug "Running: #{args.join(' ')}"
+
+  stdout, stderr, status = Open3.capture3(*args)
+  result = status == 0
+
+  if result
+    debug '   success'
+  else
+    debug '   failed'
+  end
+  debug stdout
+  debug stderr
+
+  [result, stdout, stderr, status]
+end
+
+cmd 'git add -A'
+
+nothing_to_commit = cmd 'git diff-index --quiet HEAD'
+unless nothing_to_commit
+  time = Time.now.strftime "%B %-d, %Y %I:%M %p"
+  cmd 'git', 'commit', '-am', time
+end
+
+if online?
+  # cmd 'git fetch origin'
+  merged = cmd 'git merge origin/master'
+  unless merged
+    cmd 'git add -A'
+    cmd 'git commit -am "Conflict merge"'
+  end
+  cmd 'git push origin master'
+end

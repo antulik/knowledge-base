@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+# Convert relative file path to published KB url and open it
+#
+# Example:
+#   bin/open-web docs/groups/people/Chris.md
+
+file_path = ARGV.join(' ')
+pp file_path
+url = file_path
+  .sub('docs/', 'https://pi-knowledge-base.herokuapp.com/')
+  .sub('.md', '/')
+
+`open "#{url}"`

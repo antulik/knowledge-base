@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Load ENVs
+# https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs/
+set -o allexport
+source .env
+set +o allexport
+
+rackup

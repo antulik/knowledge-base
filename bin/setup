@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+path = `which code`
+if path == ""
+  puts "You need to add VSCode to your path. Follow these steps:"
+  puts
+  puts "  1. Launch VS Code."
+  puts "  2. Command + Shift + P to open the Command Palette."
+  puts "  3. Type 'shell command', to find the 'Shell Command: Install 'code' command in PATH' and select to install it."
+  puts "  4. Restart your terminal."
+  puts "  5. Run bin/setup again"
+  exit 1
+end
+
+puts "Copying VSCode settings"
+if File.exist?('.vscode/settings.json')
+  loop do
+    puts
+    puts ".vscode/settings.json already exists. Do you want to overwrite it? (d - to open diff) (Nyd)"
+    answer = gets.chomp
+    case answer
+    when "y"
+      puts "  Overwriting .vscode/settings.json"
+      `cp .vscode/settings.json.example .vscode/settings.json`
+      break
+    when "d"
+      puts "  Opening diff"
+      `code --diff .vscode/settings.json .vscode/settings.json.example`
+    else
+      puts "  Skipping"
+      break
+    end
+  end
+else
+  `cp .vscode/settings.json.example .vscode/settings.json`
+end
+
+puts "Installing VS Code extensions"
+require 'json'
+config = JSON.parse(File.read('.vscode/extensions.json'))
+
+config["recommendations"].each do |name|
+  puts "  Installing #{name}"
+  `code --install-extension #{name} --force`
+end
+
+puts "Done. Opening project"
+`code .`

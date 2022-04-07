@@ -1,0 +1,62 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.wrappingIndent": "indent",
+    "editor.overviewRulerBorder": false,
+    "editor.lineHeight": 24,
+    "[markdown]": {
+      "editor.quickSuggestions": true
+    },
+    "files.insertFinalNewline": true,
+    "files.defaultLanguage": "markdown",
+    "files.exclude": {
+      "**/node_modules": true,
+      "bin": true,
+      "overrides": true,
+      "docs/javascripts": true,
+      "Gemfile": true,
+      "Gemfile.lock": true,
+      "Procfile": true,
+      "mkdocs.yml": true,
+      "config.ru": true,
+      "requirements.txt": true,
+      ".*": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules": true
+    },
+    "foam.openDailyNote.directory": "journal",
+    "foam.openDailyNote.titleFormat": "fullDate",
+    "foam.dateSnippets.afterCompletion": "noop",
+    "git.enableSmartCommit": true,
+    "git.postCommitCommand": "sync",
+    "git.autofetch": "all",
+    "gitdoc.autoPull": "afterDelay",
+    "markdown.preview.breaks": true,
+    "pasteImage.path": "${projectRoot}/docs/attachments",
+    "pasteImage.insertPattern": "![[${imageFileName}]]",
+    "pasteImage.showFilePathConfirmInputBox": true,
+    "spellright.notificationClass": "information",
+    "spellright.language": [ "en-AU" ],
+    "spellright.groupDictionaries": false,
+    "workbench.colorTheme": "Default Light+",
+    "workbench.editor.limit.enabled": true,
+    "workbench.editor.limit.value": 2,
+    "workbench.editor.limit.perEditorGroup": true,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "explorer.sortOrderLexicographicOptions": "unicode",
+    "explorer.sortOrder": "filesFirst",
+    "editor.detectIndentation": false,
+    "markdown.extension.list.indentationSize": "inherit",
+
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".*",
+                "cmd": "bin/autocommit"
+            },
+        ]
+    },
+    "gitdoc.autoPush": "afterDelay",
+    "gitdoc.autoPushDelay": 60000,
+    "files.autoSave": "off",
+}

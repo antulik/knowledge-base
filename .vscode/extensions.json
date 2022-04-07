@@ -1,0 +1,13 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+  "recommendations": [
+    "yzhang.markdown-all-in-one",
+    "mushan.vscode-paste-image",
+    // "ban.spellright", // Some kind of issue, new VSCode instance is loaded
+    "bierner.markdown-mermaid",
+    "ms-vsliveshare.vsliveshare",
+    "svsool.markdown-memo",
+    "emeraldwalk.runonsave"
+  ]
+}

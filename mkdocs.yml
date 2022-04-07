@@ -1,0 +1,88 @@
+# official tutorial 
+# mkdocs-material: https://squidfunk.github.io/mkdocs-material/
+# mkdocs: https://www.mkdocs.org/user-guide/configuration/
+
+site_name: Tech Knowledge Base
+repo_url: https://todo
+
+theme:
+  name: material
+  custom_dir: overrides
+  #  favicon: attachment/portrait.png
+  language: en
+  features:
+#    - content.code.annotate
+#    - content.tabs.link
+#    - header.autohide
+#    - navigation.expand
+#    - navigation.indexes
+    - navigation.instant # breaks table sort
+#    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+#    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - nl2br # newline-to-break
+  - tables
+  - toc:
+      permalink: '#'
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  # - pymdownx.arithmatex:
+  #     generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  # - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+#  - pymdownx.tabbed:
+#      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search
+  - roamlinks
+    #- autolinks
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tablesort.js
+
+extra:
+  generator: false
+  # See overrides/partials/content.html for giscus integration
+  giscus:
+    repo: antulik/knowledge-base
+    repo_id: ""
+    category: ""
+    category_id: ""
+    #  Using number mapping because of bug https://github.com/giscus/giscus/issues/292
+    mapping: number
